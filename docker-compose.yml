@@ -1,0 +1,37 @@
+services:
+  app:
+    build: .
+    image: localstack-ses-explorer:latest
+    container_name: ses-explorer
+    ports:
+      # 8080 e 8081 já são usadas pelo DynamoDB Explorer e pelo S3 Explorer
+      - "4568:4568"
+    environment:
+      # Padrão: LocalStack já rodando no host na porta 4566.
+      # Com o perfil "localstack" abaixo, use DOCKER_LOCALSTACK_URL=http://localstack:4566
+      # (variável separada de LOCALSTACK_URL do .env, que aponta para localhost e não serve dentro do container)
+      - LOCALSTACK_URL=${DOCKER_LOCALSTACK_URL:-http://host.docker.internal:4566}
+    volumes:
+      # Lidas, estrelas e marcadores: o mesmo data/state.json que o npm run dev usa
+      - ./data:/app/data
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
+
+  # Opcional — só sobe com: docker compose --profile localstack up -d
+  # (não use se já houver outro LocalStack na porta 4566)
+  localstack:
+    profiles: ["localstack"]
+    image: localstack/localstack:latest
+    container_name: localstack-ses
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=ses
+      - LOCALSTACK_AUTH_TOKEN=${LOCALSTACK_AUTH_TOKEN:-}
+      - PERSISTENCE=1
+    volumes:
+      - localstack-data:/var/lib/localstack
+
+volumes:
+  localstack-data:
