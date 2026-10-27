@@ -2,7 +2,7 @@
 
 > Projeto independente da comunidade, sem afiliação com a LocalStack GmbH. "LocalStack" é marca dos seus respectivos donos e aparece aqui só para indicar com o que a ferramenta funciona.
 
-Caixa de entrada no estilo do Gmail para os e-mails que a sua aplicação envia pelo SES do LocalStack. O app lê `/_aws/ses` e mostra as mensagens numa interface de e-mail, em vez do JSON cru: HTML renderizado, anexos com pré-visualização, busca, atalhos e atualização em tempo real. É o projeto irmão do [DynamoDB Explorer](../LocalStack_DynamoDB) e do [S3 Explorer](../LocalStack_S3) e usa a mesma base visual.
+Caixa de entrada no estilo do Gmail para os e-mails que a sua aplicação envia pelo SES do LocalStack. O app lê `/_aws/ses` e mostra as mensagens numa interface de e-mail, em vez do JSON cru: HTML renderizado, anexos com pré-visualização, busca, atalhos e atualização em tempo real. É o projeto irmão do [DynamoDB Explorer](https://github.com/HiagoARJ/DynamoDB_Explorer) e do [S3 Explorer](https://github.com/HiagoARJ/S3_Explorer) e usa a mesma base visual.
 
 **Stack:** Vite · React 19 · TypeScript · Tailwind CSS v4 · lucide-react · servidor Node sem dependências (`server/`)
 
