@@ -100,16 +100,16 @@ Os **e-mails** ficam no LocalStack: o SES Explorer só lê. Eles sobrevivem a de
 - **Painel de leitura ao lado da lista** em telas a partir de 1280 px, ou em tela cheia (configurável).
 - **Layouts da lista:** em linha única no estilo do Gmail; em cartões (remetente, assunto e prévia) no painel dividido e no celular.
 - **Agrupamento por dia:** Hoje, Ontem, dia da semana ou data, com o cabeçalho fixo ao rolar.
-- **Pastas:** Caixa de entrada, Não lidas, Com estrela e Com anexos.
+- **Pastas:** Caixa de entrada, Não lidas, Favoritos e Anexos.
 - **Filtro por remetente e por destinatário** na barra lateral, com contagem de não lidas.
 - **Marcadores** com nome e cor, como no Gmail:
   - criar pelo `+` da barra lateral ou direto no menu de aplicar;
   - aplicar pelo ícone de etiqueta, em lote na seleção ou com a tecla `l`. O menu busca e cria o marcador se ele não existir;
   - cada marcador vira uma pasta, e as etiquetas aparecem na lista e no leitor;
   - editar pelo lápis. Excluir pede confirmação e não apaga as mensagens.
-- **Filtros rápidos combináveis** com contagem: Não lidas, Com estrela, Com anexo e Hoje.
+- **Filtros rápidos combináveis** com contagem: Não lidas, Favoritos, Anexos e Hoje.
 - **Busca sem acento** em assunto, endereços, corpo, nome de anexo e Message-Id, com destaque do termo. Por exemplo, "codigo" encontra "Código". `?q=termo` na URL abre já filtrado.
-- **Seleção múltipla:** o avatar vira checkbox, e Shift + clique seleciona um intervalo. Em lote, dá para marcar como lida ou não lida, dar ou tirar estrela e excluir.
+- **Seleção múltipla:** o avatar vira checkbox, e Shift + clique seleciona um intervalo. Em lote, dá para marcar como lida ou não lida, adicionar ou remover dos favoritos e excluir.
 - **Ações rápidas** ao passar o mouse: marcar como lida ou não lida, baixar o `.eml` e excluir.
 - **Chips de anexo** na própria linha: clicar abre a pré-visualização e a seta baixa.
 
@@ -157,7 +157,7 @@ Os **e-mails** ficam no LocalStack: o SES Explorer só lê. Eles sobrevivem a de
 |---|---|---|---|
 | `j` / `↓` | próxima | `c` | novo e-mail de teste |
 | `k` / `↑` | anterior | `r` | atualizar |
-| `Enter` / `o` | abrir | `s` | estrela |
+| `Enter` / `o` | abrir | `s` | favoritar |
 | `Esc` | voltar, limpar seleção ou filtros | `u` | marcar como não lida |
 | `/` | pesquisar | `x` | selecionar |
 | `Ctrl K` | paleta de comandos | `#` / `Del` | excluir |

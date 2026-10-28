@@ -258,8 +258,8 @@ export function Sidebar({
   const nav: { kind: ViewKind; label: string; icon: LucideIcon; count: number; strong?: boolean }[] = [
     { kind: 'inbox', label: 'Caixa de entrada', icon: Inbox, count: counts.unread, strong: true },
     { kind: 'unread', label: 'Não lidas', icon: Mail, count: counts.unread },
-    { kind: 'starred', label: 'Com estrela', icon: Star, count: counts.starred },
-    { kind: 'attachments', label: 'Com anexos', icon: Paperclip, count: counts.attachments },
+    { kind: 'starred', label: 'Favoritos', icon: Star, count: counts.starred },
+    { kind: 'attachments', label: 'Anexos', icon: Paperclip, count: counts.attachments },
   ]
 
   const linkCls = (active: boolean) =>

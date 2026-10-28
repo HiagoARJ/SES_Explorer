@@ -67,9 +67,9 @@ export function StarButton({ on, onToggle, className = '' }: { on: boolean; onTo
         e.stopPropagation()
         onToggle()
       }}
-      aria-label={on ? 'Remover estrela' : 'Marcar com estrela'}
+      aria-label={on ? 'Remover dos favoritos' : 'Adicionar aos favoritos'}
       aria-pressed={on}
-      title={on ? 'Remover estrela (s)' : 'Marcar com estrela (s)'}
+      title={on ? 'Remover dos favoritos (s)' : 'Adicionar aos favoritos (s)'}
       className={`focus-ring flex size-7 shrink-0 items-center justify-center rounded-full transition-colors hover:bg-amber-500/10 ${className}`}
     >
       <Star

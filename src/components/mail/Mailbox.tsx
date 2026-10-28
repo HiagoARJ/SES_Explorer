@@ -29,7 +29,6 @@ import { Button, IconButton } from '../ui/Button'
 import { hasOpenLayer } from '../ui/Dialog'
 import { Checkbox } from '../ui/Form'
 import { EmptyState } from '../ui/Misc'
-import { Tooltip } from '../ui/Tooltip'
 import { AttachmentPreview, type PreviewTarget } from './Attachments'
 import { LabelMenu } from './Labels'
 import { MailReader, ReaderPlaceholder } from './MailReader'
@@ -427,7 +426,7 @@ export function Mailbox({
 
   const listPane = (
     <section
-      className={`flex min-h-0 min-w-0 flex-col bg-white dark:bg-zinc-900/40 ${split ? 'w-[440px] shrink-0 border-r border-zinc-200 2xl:w-[520px] dark:border-zinc-800' : 'flex-1'} ${
+      className={`flex min-h-0 min-w-0 flex-col bg-white dark:bg-zinc-900/40 ${split ? 'w-[440px] shrink-0 border-r border-zinc-200 2xl:w-[600px] dark:border-zinc-800' : 'flex-1'} ${
         !split && openId ? 'hidden' : ''
       }`}
     >
@@ -475,7 +474,8 @@ export function Mailbox({
         </div>
       )}
 
-      {/* No celular os filtros rápidos descem para uma segunda linha rolável; do sm para cima, tudo numa linha */}
+      {/* No celular os filtros rápidos descem para uma segunda linha; do sm para cima, tudo numa linha.
+          Se não couberem, rolam de lado com a borda esmaecida */}
       <div className="flex shrink-0 flex-wrap items-center gap-x-1 border-y border-zinc-200 px-2 py-1 sm:h-11 sm:flex-nowrap sm:py-0 dark:border-zinc-800">
         <span className="flex size-8 items-center justify-center">
           <Checkbox
@@ -492,8 +492,8 @@ export function Mailbox({
             </span>
             <IconButton icon={MailOpen} label="Marcar como lidas" onClick={() => set([...selected], { read: true })} />
             <IconButton icon={MailIcon} label="Marcar como não lidas" onClick={() => set([...selected], { read: false })} />
-            <IconButton icon={Star} label="Adicionar estrela" onClick={() => set([...selected], { starred: true })} />
-            <IconButton icon={StarOff} label="Remover estrela" className="max-sm:hidden" onClick={() => set([...selected], { starred: false })} />
+            <IconButton icon={Star} label="Adicionar aos favoritos" onClick={() => set([...selected], { starred: true })} />
+            <IconButton icon={StarOff} label="Remover dos favoritos" className="max-sm:hidden" onClick={() => set([...selected], { starred: false })} />
             <LabelMenu ids={[...selected]} />
             <IconButton icon={Trash2} label="Excluir selecionadas (#)" tone="danger" onClick={() => remove([...selected])} />
             <div className="flex-1" />
@@ -510,12 +510,12 @@ export function Mailbox({
             />
             <IconButton icon={CheckCheck} label="Marcar todas como lidas" onClick={onMarkAllRead} disabled={!unreadTotal} />
             <IconButton icon={Trash2} label="Limpar caixa no LocalStack" tone="danger" onClick={onClearInbox} disabled={!inbox.mails.length} />
-            <span className="mx-1.5 h-5 w-px shrink-0 bg-zinc-200 max-sm:hidden dark:bg-zinc-800" />
+            <span className="mx-1 h-5 w-px shrink-0 bg-zinc-200 max-sm:hidden dark:bg-zinc-800" />
           </div>
-            <div className="animate-fade-in flex min-w-0 gap-1.5 overflow-x-auto py-1 [scrollbar-width:none] max-sm:order-last max-sm:-mx-2 max-sm:w-[calc(100%+1rem)] max-sm:px-2 max-sm:[mask-image:linear-gradient(to_right,black_calc(100%-2rem),transparent)] sm:flex-1">
+            <div className="animate-fade-in flex min-w-0 gap-1 overflow-x-auto py-1 mask-[linear-gradient(to_right,black_calc(100%-1.5rem),transparent)] [scrollbar-width:none] max-sm:order-last max-sm:-mx-2 max-sm:w-[calc(100%+1rem)] max-sm:px-2 sm:flex-1">
               {PILLS.map((p) => {
                 const on = pills.has(p.id)
-                const pill = (
+                return (
                   <button
                     key={p.id}
                     type="button"
@@ -528,27 +528,20 @@ export function Mailbox({
                         return n
                       })
                     }
-                    className={`focus-ring inline-flex h-7 shrink-0 items-center gap-1.5 rounded-full px-2.5 text-xs font-medium transition-all duration-200 active:scale-95 ${
+                    className={`focus-ring inline-flex h-7 shrink-0 items-center gap-1 rounded-full px-2 text-xs font-medium transition-all duration-200 active:scale-95 ${
                       on
                         ? 'bg-indigo-600 text-white shadow-sm shadow-indigo-600/30'
                         : 'text-zinc-600 ring-1 ring-zinc-200 ring-inset hover:bg-zinc-100 dark:text-zinc-300 dark:ring-zinc-700 dark:hover:bg-zinc-800'
                     }`}
                   >
                     <p.icon className={`size-3.5 ${on && p.id === 'starred' ? 'fill-current' : ''}`} />
-                    <span className={split ? 'hidden 2xl:inline' : ''}>{p.label}</span>
+                    <span>{p.label}</span>
                     <span className={`tabular-nums ${on ? 'text-white/80' : 'text-zinc-400'}`}>{pillCounts[p.id]}</span>
                   </button>
                 )
-                return split ? (
-                  <Tooltip key={p.id} label={p.label} side="bottom">
-                    {pill}
-                  </Tooltip>
-                ) : (
-                  pill
-                )
               })}
-              {/* respiro para o último filtro não ficar sob o esmaecido no celular */}
-              <span className="w-6 shrink-0 sm:hidden" />
+              {/* respiro para o último filtro não ficar sob o esmaecido */}
+              <span className="w-6 shrink-0" />
             </div>
           </>
         )}

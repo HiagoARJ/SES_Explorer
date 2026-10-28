@@ -8,8 +8,8 @@ export type Pill = 'unread' | 'starred' | 'attachments' | 'today'
 
 export const PILLS: { id: Pill; label: string; icon: LucideIcon }[] = [
   { id: 'unread', label: 'Não lidas', icon: MailIcon },
-  { id: 'starred', label: 'Com estrela', icon: Star },
-  { id: 'attachments', label: 'Com anexo', icon: Paperclip },
+  { id: 'starred', label: 'Favoritos', icon: Star },
+  { id: 'attachments', label: 'Anexos', icon: Paperclip },
   { id: 'today', label: 'Hoje', icon: CalendarDays },
 ]
 
@@ -50,11 +50,11 @@ export function matchesQuery(m: Mail, q: string): boolean {
 export function viewTitle(r: Route): string {
   switch (r.kind) {
     case 'starred':
-      return 'Com estrela'
+      return 'Favoritos'
     case 'unread':
       return 'Não lidas'
     case 'attachments':
-      return 'Com anexos'
+      return 'Anexos'
     case 'from':
       return 'Enviadas por'
     case 'to':

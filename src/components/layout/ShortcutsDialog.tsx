@@ -20,7 +20,7 @@ const GROUPS: { title: string; keys: [string[], string][] }[] = [
     keys: [
       [['c'], 'Escrever e-mail de teste'],
       [['r'], 'Atualizar'],
-      [['s'], 'Estrela'],
+      [['s'], 'Favoritar'],
       [['u'], 'Marcar como não lida'],
       [['l'], 'Marcadores'],
       [['x'], 'Selecionar'],
